@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MY LOVE</title>
+<style>
+body{
+  margin:0;
+  background: linear-gradient(135deg, #ffc0cb, #ffb6c1, #ff69b4);
+  font-family:sans-serif;
+  overflow-x:hidden;
+  position:relative;
+}
+body::before {
+  content: "I LOVE YOU I LOVE YOU I LOVE YOU I LOVE YOU I LOVE YOU I LOVE YOU I LOVE YOU I LOVE YOU ";
+  position:fixed;
+  top:0; left:0;
+  width:100%;
+  height:100%;
+  font-size:14px;
+  color:rgba(255,255,255,0.2);
+  pointer-events:none;
+  white-space:pre-wrap;
+  line-height:1.5em;
+}
+#welcome{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.5);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  z-index:2000;
+}
+#welcome button{
+  padding:12px 25px;
+  font-size:20px;
+  border-radius:12px;
+  border:none;
+  background:#ff0066;
+  color:white;
+  cursor:pointer;
+}
+
+.container{
+  position: relative;
+  width: 90%;
+  margin: auto;
+  margin-top: 50px;
+}
+
+/* كل صورة بمكان مختلف */
+.card{
+  position: absolute;
+  border-radius:14px;
+  overflow:hidden;
+  background:rgba(255,255,255,0.2);
+  padding:5px;
+  cursor:pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+.card img{
+  display:block;
+  width:100%;
+  border-radius:14px;
+  transition: transform 0.3s;
+}
+
+.card:hover img{
+  transform: scale(1.05);
+}
+
+.caption{
+  margin-top:5px;
+  font-size:16px;
+  text-align:center;
+  color:black;
+  font-weight:bold;
+  opacity:0;
+  transition: opacity 0.8s;
+}
+
+.card:hover .caption{
+  opacity:1;
+}
+
+/* قلوب و ورود */
+.floating-heart{
+  position:fixed;
+  color:#ff4d8f;
+  animation:floatUp 4s linear forwards;
+}
+@keyframes floatUp{
+  from{transform:translateY(0);opacity:1}
+  to{transform:translateY(-120px);opacity:0}
+}
+.rose{
+  position:fixed;
+  top:-30px;
+  animation:drop 6s linear forwards;
+  font-size:20px;
+}
+@keyframes drop{
+  from{transform:translateY(0)}
+  to{transform:translateY(110vh)}
+}
+
+iframe{
+  margin-top:10px;
+  border-radius:12px;
+  width:100%;
+  height:166px;
+}
+</style>
+</head>
+<body>
+
+<div id="welcome">
+  <h1>ماميييييي😍💖</h1>
+  <p>ادخلي شوفي ❤️</p>
+  <button id="enterBtn">ادخلي</button>
+</div>
+
+<iframe id="bgMusic" scrolling="no" frameborder="no" allow="autoplay"
+src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A1447114696&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+
+<div class="container">
+  <div class="card" style="top:0px; left:50%; width:300px; transform:translateX(-50%);"><img src="https://i.ibb.co/rKjWqnHy/IMG1.jpg"><div class="caption">دايب أنا في الحركه دي 🤤😍</div></div>
+  <div class="card" style="top:320px; left:10%; width:180px; transform:rotate(-5deg);"><img src="https://i.ibb.co/jZBBPdVp/IMG2.jpg"><div class="caption">اموتنا بق 🤩</div></div>
+  <div class="card" style="top:650px; left:60%; width:180px; transform:rotate(3deg);"><img src="https://i.ibb.co/jkk4Rt9v/IMG-20251129-132013.jpg"><div class="caption">يخربيت شفايفك 🤤😍</div></div>
+  <div class="card" style="top:950px; left:30%; width:300px; transform:rotate(-2deg);"><img src="https://i.ibb.co/1fYpmPXS/IMG3.jpg"><div class="caption">عيونك الي سحراني 😍</div></div>
+  <div class="card" style="top:1300px; left:70%; width:180px; transform:rotate(-4deg);"><img src="https://i.ibb.co/F4LddW3r/IMG-20251129-132132.jpg"><div class="caption">اخبيكي فين من جمالك 😶‍🌫️💕</div></div>
+  <div class="card" style="top:1600px; left:40%; width:180px; transform:rotate(2deg);"><img src="https://i.ibb.co/RTxNyGfF/IMG-20251129-152716.jpg"><div class="caption">اوعاا بق 😉💕</div></div>
+</div>
+
+<script>
+const welcome = document.getElementById('welcome');
+const enterBtn = document.getElementById('enterBtn');
+const musicIframe = document.getElementById('bgMusic');
+const cards = document.querySelectorAll('.card');
+
+enterBtn.addEventListener('click', ()=>{
+  welcome.style.display='none';
+  const iframeWindow = musicIframe.contentWindow;
+  iframeWindow.postMessage({ method: 'play' }, '*');
+});
+
+// قلوب عائمة
+function spawnHeart(){
+  const h = document.createElement('div');
+  h.className='floating-heart';
+  h.style.left = Math.random()*100 + '%';
+  h.style.top = (70 + Math.random()*20)+'%';
+  h.style.fontSize = (14 + Math.random()*28)+'px';
+  h.textContent = '❤';
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),4000);
+}
+setInterval(spawnHeart,1000);
+
+// ورود تتساقط
+function dropRose(){
+  const r = document.createElement('div');
+  r.className='rose';
+  r.textContent='🌸';
+  r.style.left = Math.random()*100 + '%';
+  r.style.fontSize = (20 + Math.random()*20)+'px';
+  document.body.appendChild(r);
+  setTimeout(()=>r.remove(),6000);
+}
+setInterval(dropRose,600);
+
+// تكبير الصور عند الضغط
+cards.forEach(card => {
+  const img = card.querySelector('img');
+  img.addEventListener('click', () => {
+    img.style.transform += ' scale(1.2)';
+    setTimeout(() => {
+      img.style.transform = img.style.transform.replace(' scale(1.2)','');
+    }, 800);
+  });
+});
+</script>
+
+</body>
+</html>
